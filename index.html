@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <style>
+    .calculator {
+      width: 300px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgb(48, 46, 46);
+    }
+
+    #display {
+      width: calc(100% - 20px);
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 20px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    button {
+      padding: 15px 20px;
+      margin: 5px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 50px;
+    }
+
+    p {
+      color: #666;
+      margin: 20px auto;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+  </style>
+  <body>
+    <h1>Welcome to Our Calculator!</h1>
+    <p>
+      Perform quick calculations with our easy-to-use calculator. Simply click
+      on the buttons to input numbers and operators, and press '=' to get the
+      result. You can also clear the display using the 'C' button. Enjoy
+      calculating!
+    </p>
+    <div class="calculator">
+      <input type="text" id="display" readonly />
+      <div class="buttons">
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>+</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>-</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>*</button>
+        <button>0</button>
+        <button>C</button>
+        <button>=</button>
+        <button>/</button>
+        <button>%</button>
+      </div>
+    </div>
+    <script>
+      let btn = document.querySelectorAll("button");
+      btn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          let text = e.target.innerText;
+          let display = document.getElementById("display");
+          if (text === "C") {
+            display.value = "";
+          } else if (text === "=") {
+            display.value = eval(display.value);
+          } else if (text === "%") {
+            let val = parseFloat(display.value);
+            let val2 = val / 100;
+            display.value = val2;
+          } else {
+            display.value += text;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
